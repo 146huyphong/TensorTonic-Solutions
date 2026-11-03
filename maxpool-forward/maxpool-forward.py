@@ -10,10 +10,11 @@ def maxpool_forward(X: list, pool_size: int, stride: int) -> list:
     return [
         [
             # submatrix = [row[c_start:c_end] for row in A[r_start:r_end]]
-            max([
-                max(row[j * stride : j * stride + pool_size])
+            max(
+                val
                 for row in X[i * stride : i * stride + pool_size]
-            ]) 
+                for val in row[j * stride : j * stride + pool_size]
+            ) 
              for j in range(w)
         ]
         for i in range(h)
